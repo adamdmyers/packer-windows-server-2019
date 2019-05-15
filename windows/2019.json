@@ -25,10 +25,13 @@
 			]
 		}
 	],
-	"provisioners": [{
+	"_comment": "Packer doesn't use the version option on chef-solo provisioners for windows. Hence custom install command.",
+	"provisioners": [	
+		{
 			"type": "chef-solo",
 			"cookbook_paths": ["cookbooks"],
 			"guest_os_type": "windows",
+			"install_command": "{{ user `chef_install` }}",
 			"run_list": [
 				"packer::disable_uac",
 				"packer::disable_restore",
@@ -43,6 +46,7 @@
 			"type": "chef-solo",
 			"cookbook_paths": ["cookbooks"],
 			"guest_os_type": "windows",
+			"install_command": "{{ user `chef_install` }}",
 			"run_list": [
 				"packer::vm_tools",
 				"packer::features",
@@ -59,6 +63,7 @@
 			"type": "chef-solo",
 			"cookbook_paths": ["cookbooks"],
 			"guest_os_type": "windows",
+			"install_command": "{{ user `chef_install` }}",
 			"run_list": [
 				"packer::cleanup",
 				"packer::defrag"
@@ -81,9 +86,10 @@
 	],
 	"variables": {
 		"guest_additions_mode": "attach",
-		"headless": "true",
+		"headless": "false",
 		"iso_checksum": "91e3a2f1acc39af21353c7cc105c799494d7539f",
 		"iso_url": "https://software-download.microsoft.com/download/sg/17763.253.190108-0006.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us.iso",
-		"template": "windows-2019-standard"
+		"template": "windows-2019-standard",
+		"chef_install": "powershell.exe -Command \". { iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -version 14.12.9\""
 	}
 }

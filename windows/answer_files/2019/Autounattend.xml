@@ -51,7 +51,8 @@
                     <InstallFrom>
                         <MetaData wcm:action="add">
                             <Key>/IMAGE/NAME</Key>
-                            <Value>Windows Server 2019 SERVERDATACENTER</Value>
+                            <Value>Windows Server 2019 SERVERDATACENTERCORE</Value>
+                            <!-- To have a UI: <Value>Windows Server 2019 SERVERDATACENTER</Value>  -->
                         </MetaData>
                     </InstallFrom>
                     <InstallTo>
@@ -66,7 +67,7 @@
                 </ProductKey>
                 <AcceptEula>true</AcceptEula>
                 <FullName>Vagrant</FullName>
-                <Organization>some organization</Organization>
+                <Organization>some organisation</Organization>
             </UserData>
         </component>
     </settings>
